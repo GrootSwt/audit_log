@@ -1,0 +1,18 @@
+#数据库配置
+db:
+  host: 193.168.2.141
+  port: 45001
+  user: root
+  password: SFYmysqlServer1
+  db_name: audit_log_db
+#消息队列配置
+mq:
+  host: 193.168.2.141
+  port: 5672
+  user: platform
+  password: 123456qwerty
+  queue_name: AUDITLOG_TOPIC_client-40009
+#定期转移数据配置(每个月一号凌晨执行)
+spec: "0 0 1 * *"
+#项目启动的端口
+port: ":8899"
