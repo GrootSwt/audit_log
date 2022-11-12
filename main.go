@@ -1,12 +1,14 @@
 package main
 
 import (
+	"audit_log/common"
+	"audit_log/controller"
+	"audit_log/mq"
+
 	"github.com/gin-gonic/gin"
-	"go_code/audit_log/common"
-	"go_code/audit_log/controller"
-	"go_code/audit_log/mq"
 )
-//	项目初始化时获取配置文件信息
+
+// 项目初始化时获取配置文件信息
 func init() {
 	common.LoadConfigInformation()
 }

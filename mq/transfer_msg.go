@@ -1,12 +1,13 @@
 package mq
 
 import (
+	"audit_log/common"
+	"audit_log/dao"
+
 	"github.com/robfig/cron/v3"
-	"go_code/audit_log/common"
-	"go_code/audit_log/dao"
 )
 
-//	定时完成log表数据转移到log_history
+// 定时完成log表数据转移到log_history
 func TransferMsg() {
 	crontab := cron.New()
 	task := func() {

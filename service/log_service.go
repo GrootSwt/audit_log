@@ -1,11 +1,11 @@
 package service
 
 import (
-	"go_code/audit_log/convertor"
-	"go_code/audit_log/dao"
-	"go_code/audit_log/dto"
-	"go_code/audit_log/model"
-	"go_code/audit_log/util"
+	"audit_log/convertor"
+	"audit_log/dao"
+	"audit_log/dto"
+	"audit_log/model"
+	"audit_log/util"
 	"log"
 	"strconv"
 	"time"
@@ -15,7 +15,8 @@ const (
 	//	时间格式化值
 	PATTERN = "2006-01-02 15:04:05"
 )
-//	插入log
+
+// 插入log
 func InsertLogService(logModel model.LogModel) {
 	//	添加创建时间
 	logModel.CreateDate = time.Now()
@@ -25,7 +26,8 @@ func InsertLogService(logModel model.LogModel) {
 	//	插入日志
 	dao.InsertLog(logModel)
 }
-//	根据id查询日志
+
+// 根据id查询日志
 func GetById(idStr string) model.LogModel {
 	id, err := strconv.ParseInt(idStr, 10, 64)
 	if err != nil {
@@ -34,7 +36,8 @@ func GetById(idStr string) model.LogModel {
 	logModel := dao.GetLogById(id)
 	return logModel
 }
-//	分页条件查询
+
+// 分页条件查询
 func GetByPaging(pageStr string, pageSizeStr string,
 	currentDepartment string, currentOrganization string,
 	startDateStr string, endDateStr string) (int, interface{}) {

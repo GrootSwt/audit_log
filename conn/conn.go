@@ -1,14 +1,15 @@
 package conn
 
 import (
+	"audit_log/common"
 	"fmt"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
-	"go_code/audit_log/common"
 )
 
-//	连接数据库
+// 连接数据库
 func GetDB() *gorm.DB {
 	dbModel := common.ConfigInformation.DBConfigInfo
 	host := dbModel.Host

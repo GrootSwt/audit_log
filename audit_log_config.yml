@@ -1,16 +1,16 @@
 #数据库配置
 db:
-  host: 193.168.2.141
+  host: localhost
   port: 45001
   user: root
-  password: SFYmysqlServer1
+  password: 123456
   db_name: audit_log_db
 #消息队列配置
 mq:
-  host: 193.168.2.141
+  host: localhost
   port: 5672
   user: platform
-  password: 123456qwerty
+  password: 123456
   queue_name: AUDITLOG_TOPIC_client-40009
 #定期转移数据配置(每个月一号凌晨执行)
 spec: "0 0 1 * *"

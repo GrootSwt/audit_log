@@ -1,13 +1,14 @@
 package mq
 
 import (
+	"audit_log/common"
+	"audit_log/convertor"
+	"audit_log/dto"
+	"audit_log/service"
 	"encoding/json"
-	"github.com/streadway/amqp"
-	"go_code/audit_log/common"
-	"go_code/audit_log/convertor"
-	"go_code/audit_log/dto"
-	"go_code/audit_log/service"
 	"log"
+
+	"github.com/streadway/amqp"
 )
 
 func failOnError(err error, msg string) {
@@ -24,7 +25,7 @@ func GetMsg() {
 	password := mqModel.Password
 	queueName := mqModel.QueueName
 	//	创建连接
-	conn, err := amqp.Dial("amqp://"+user+":"+password+"@"+host+":"+port+"/")
+	conn, err := amqp.Dial("amqp://" + user + ":" + password + "@" + host + ":" + port + "/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 	//	创建连接通道

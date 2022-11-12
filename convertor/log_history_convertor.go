@@ -1,7 +1,7 @@
 package convertor
 
 import (
-	"go_code/audit_log/model"
+	"audit_log/model"
 )
 
 func LogModelToLogModelHistory(logModel model.LogModel) model.LogHistoryModel {

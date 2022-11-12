@@ -1,12 +1,12 @@
 package convertor
 
 import (
-	"go_code/audit_log/dto"
-	"go_code/audit_log/model"
+	"audit_log/dto"
+	"audit_log/model"
 	"time"
 )
 
-//	logDto转LogModel
+// logDto转LogModel
 func LogDtoTogModel(dto dto.LogDto) model.LogModel {
 	var logModel model.LogModel
 	logModel.Id = dto.Id
@@ -41,7 +41,7 @@ func LogDtoTogModel(dto dto.LogDto) model.LogModel {
 	return logModel
 }
 
-//	logModel转logDto
+// logModel转logDto
 func LogModelToLogDto(model model.LogModel) dto.LogDto {
 	var logDto dto.LogDto
 	logDto.Id = model.Id

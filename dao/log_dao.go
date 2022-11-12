@@ -1,14 +1,14 @@
 package dao
 
 import (
+	"audit_log/conn"
+	"audit_log/convertor"
+	"audit_log/model"
 	"fmt"
-	"go_code/audit_log/conn"
-	"go_code/audit_log/convertor"
-	"go_code/audit_log/model"
 	"time"
 )
 
-//	新增日志
+// 新增日志
 func InsertLog(logModel model.LogModel) {
 	db := conn.GetDB()
 	defer db.Close()
@@ -24,7 +24,7 @@ func InsertLog(logModel model.LogModel) {
 	}
 }
 
-//	根据id查询日志
+// 根据id查询日志
 func GetLogById(id int64) model.LogModel {
 	db := conn.GetDB()
 	defer db.Close()
@@ -35,7 +35,7 @@ func GetLogById(id int64) model.LogModel {
 	return logModel
 }
 
-//	分页条件查询
+// 分页条件查询
 func GetByPaging(startRow int, pageSize int, currentDepartment string, currentOrganization string,
 	startDate time.Time, endDate time.Time) (int, []model.LogModel) {
 	db := conn.GetDB()
@@ -55,15 +55,16 @@ func GetByPaging(startRow int, pageSize int, currentDepartment string, currentOr
 	db.Offset(startRow).Limit(pageSize).Find(&logModelList)
 	return totalCount, logModelList
 }
-//	数据转移
+
+// 数据转移
 func TransferLog() {
 	db := conn.GetDB()
 	defer db.Close()
 	tx := db.Begin()
 	//	查询数据
-	logModelList := make([]model.LogModel,0)
+	logModelList := make([]model.LogModel, 0)
 	tx.Find(&logModelList)
-	for _,logModel := range logModelList {
+	for _, logModel := range logModelList {
 		logHistory := convertor.LogModelToLogModelHistory(logModel)
 		tx.Create(&logHistory)
 		tx.Delete(&logModel)

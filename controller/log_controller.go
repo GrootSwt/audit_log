@@ -1,19 +1,20 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
-	"go_code/audit_log/convertor"
-	"go_code/audit_log/service"
+	"audit_log/convertor"
+	"audit_log/service"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Load(g *gin.Engine) {
 	g.GET("getById/:id", getByIdHandler)
-	g.GET("getByPaging/:page/:pageSize/:currentDepartment/:currentOrganization/" +
+	g.GET("getByPaging/:page/:pageSize/:currentDepartment/:currentOrganization/"+
 		":startDate/:endDate", getByPagingHandler)
 }
 
-//	根据id查询log
+// 根据id查询log
 func getByIdHandler(c *gin.Context) {
 	idStr := c.Param("id")
 	logModel := service.GetById(idStr)
@@ -25,7 +26,7 @@ func getByIdHandler(c *gin.Context) {
 	})
 }
 
-//	分页查询log
+// 分页查询log
 func getByPagingHandler(c *gin.Context) {
 	pageStr := c.Param("page")
 	pageSizeStr := c.Param("pageSize")

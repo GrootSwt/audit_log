@@ -1,4 +1,4 @@
-module go_code/audit_log
+module audit_log
 
 go 1.15
 
